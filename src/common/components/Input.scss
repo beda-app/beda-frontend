@@ -1,0 +1,45 @@
+.Input {
+  display: flex;
+  flex-direction: row;
+
+  &__el {
+    min-height: 36px;
+    max-height: 36px;
+    border: none;
+    align-self: flex-end;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.65);
+    width: 100%;
+    background-color: transparent;
+    margin-top: 4px;
+  }
+
+  &__container {
+    margin-left: 16px;
+    width: 100%;
+  }
+
+  @keyframes input-selected-animation {
+    0% {
+      border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+    }
+    100% {
+      border-bottom: 2px solid #3ed598;
+    }
+  }
+
+  &__el:focus {
+    outline: none;
+    animation: input-selected-animation 300ms ease-in-out;
+    border-bottom: 2px solid #3ed598;
+  }
+
+  &__show-password {
+    margin-top: 5px;
+  }
+}
+
+.Input:not(:first-of-type) {
+  margin-top: 16px;
+}
