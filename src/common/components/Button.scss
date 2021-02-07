@@ -24,3 +24,7 @@
 .Button:active {
   opacity: 0.7;
 }
+
+.Button:disabled {
+  opacity: 0.5;
+}
