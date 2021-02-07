@@ -17,7 +17,7 @@ class Login extends React.Component {
           </div>
           <Input
             left={<Icon src={UserIcon} height={48} width={38} />}
-            placeholder="Логин"
+            placeholder="E-Mail"
             type="text"
           />
           <Input
