@@ -37,7 +37,7 @@ Input.propTypes = {
   type: PropTypes.string,
   left: PropTypes.element,
   className: PropTypes.string,
-  mode: PropTypes.oneOf("default", "error"),
+  mode: PropTypes.oneOf(["default", "error"]),
 };
 
 export default Input;
