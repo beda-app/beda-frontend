@@ -1,6 +1,7 @@
 .Input {
   display: flex;
   flex-direction: row;
+  $color: #3ed598;
 
   &__el {
     min-height: 36px;
@@ -29,10 +30,14 @@
     }
   }
 
-  &__el:focus {
+  &__mode-default:focus {
     outline: none;
     animation: input-selected-animation 300ms ease-in-out;
     border-bottom: 2px solid #3ed598;
+  }
+
+  &__mode-error {
+    border-bottom: 2px solid #ff575f;
   }
 
   &__show-password {
