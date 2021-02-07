@@ -1,5 +1,59 @@
 .Login {
+  margin: 0 auto;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1f2e35;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+  }
+
   &__title {
-    color: red;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: 78px;
+  }
+
+  &__title-box {
+    max-height: 45px;
+    max-width: 45px;
+    min-height: 45px;
+    min-width: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+    background: linear-gradient(180deg, #40df9f 0%, #3ed598 100%);
+    box-shadow: 0 2px 4px rgba(15, 218, 137, 0.3);
+  }
+
+  &__title-box-logo {
+    width: 24px;
+    height: 24px;
+  }
+
+  &__title-text {
+    font-family: Ubuntu, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 42px;
+    line-height: 48px;
+    color: #fff;
+    margin-left: 16px;
+  }
+
+  &__button-container {
+    margin-top: 50px;
+  }
+
+  &__button-container > *:not(:first-child) {
+    margin-top: 16px;
   }
 }
