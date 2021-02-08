@@ -1,0 +1,12 @@
+.FormStatus {
+  font-family: Ubuntu, sans-serif;
+  padding: 16px;
+  border-radius: 12px;
+  background-color: #286053;
+  color: #3dd598;
+
+  &__error {
+    background-color: #623a42;
+    color: #ff575f;
+  }
+}
