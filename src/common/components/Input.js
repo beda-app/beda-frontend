@@ -15,7 +15,10 @@ const Input = (props) => {
   return (
     <div className="Input">
       {left}
-      <div className="Input__container">
+      <div
+        className="Input__container"
+        style={{ marginLeft: left !== undefined ? 16 : 0 }}
+      >
         <input
           className={classNames.join(" ")}
           type={type === "password" && !hidden ? "text" : type}
