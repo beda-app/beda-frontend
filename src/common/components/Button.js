@@ -4,11 +4,7 @@ import "./Button.scss";
 
 const Button = (props) => {
   const { mode, className, children, ...restProps } = props;
-  const classNames = ["Button"];
-  if (mode && mode !== "primary") {
-    classNames.push(`Button__${mode}`);
-  }
-  classNames.push(className);
+  const classNames = ["Button", `Button__${mode || "primary"}`, className];
 
   return (
     <button className={classNames.join(" ")} {...restProps}>
