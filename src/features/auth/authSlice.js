@@ -1,27 +1,32 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import Backend from "../../common/backend/Backend";
+import Backend, { BackendError } from "../../common/backend/Backend";
 
-const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
+export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
   const { rejectWithValue } = thunkAPI;
 
   try {
     const response = await Backend.call("auth/login", user);
     return response.token;
   } catch (e) {
-    return rejectWithValue(e);
+    if (e instanceof BackendError) return rejectWithValue(e.message);
+    else return rejectWithValue("Request error");
   }
 });
 
-const register = createAsyncThunk("auth/register", async (user, thunkAPI) => {
-  const { rejectWithValue } = thunkAPI;
+export const register = createAsyncThunk(
+  "auth/register",
+  async (user, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
 
-  try {
-    const response = await Backend.call("auth/register", user);
-    return response.token;
-  } catch (e) {
-    return rejectWithValue(e);
+    try {
+      const response = await Backend.call("auth/register", user);
+      return response.token;
+    } catch (e) {
+      if (e instanceof BackendError) return rejectWithValue(e.message);
+      else return rejectWithValue("Request error");
+    }
   }
-});
+);
 
 const authSlice = createSlice({
   name: "auth",
@@ -31,19 +36,25 @@ const authSlice = createSlice({
   },
   reducers: {},
   extraReducers: {
-    [login.pending]: (state) => (state.status = "pending"),
-    [login.fulfilled]: (state, { token }) => {
-      localStorage.setItem("token", token);
+    [login.pending]: (state) => {
+      state.status = "pending";
+    },
+    [login.fulfilled]: (state, { payload }) => {
+      localStorage.setItem("token", payload);
+      state.status = "success";
+      state.error = undefined;
+    },
+    [login.rejected]: (state, action) => {
+      state.error = action.payload;
       state.status = "idle";
     },
-    [login.rejected]: (state, { payload }) => {
-      state.error = payload;
-      state.status = "idle";
+    [register.pending]: (state) => {
+      state.status = "pending";
     },
-    [register.pending]: (state) => (state.status = "pending"),
-    [register.fulfilled]: (state, { token }) => {
-      localStorage.setItem("token", token);
-      state.status = "idle";
+    [register.fulfilled]: (state, { payload }) => {
+      localStorage.setItem("token", payload);
+      state.status = "success";
+      state.error = undefined;
     },
     [register.rejected]: (state, { payload }) => {
       state.error = payload;

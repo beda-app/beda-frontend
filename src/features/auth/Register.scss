@@ -1,4 +1,4 @@
-.Login {
+.Register {
   margin: 0 auto;
   width: 100%;
   min-height: 100vh;
@@ -46,9 +46,5 @@
 
   &__button-container {
     margin-top: 50px;
-  }
-
-  &__button-container > *:not(:first-child) {
-    margin-top: 16px;
   }
 }

@@ -1,41 +1,27 @@
 import React from "react";
-import "./Login.scss";
+import "./Register.scss";
+import Input from "../../common/components/Input";
+import PropTypes from "prop-types";
+import Icon from "../../common/components/Icon";
 import UserIcon from "../../assets/img/icon-user.svg";
 import PasswordIcon from "../../assets/img/icon-password.svg";
-import Input from "../../common/components/Input";
-import Icon from "../../common/components/Icon";
 import Button from "../../common/components/Button";
-import PropTypes from "prop-types";
-import { withRouter, Redirect } from "react-router-dom";
-import { compose } from "redux";
-import { connect } from "react-redux";
-import { login } from "./authSlice";
-
 import FormStatus from "../../common/components/FormStatus";
+import { connect } from "react-redux";
+import { register } from "./authSlice";
+import { Redirect } from "react-router-dom";
 
-class Login extends React.Component {
+class Register extends React.Component {
   constructor(props) {
     super(props);
 
-    this.login = this.login.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.register = this.register.bind(this);
 
     this.state = {
       email: "",
       password: "",
     };
-  }
-
-  login() {
-    const { email, password } = this.state;
-    if (!this.validateEmail(email) || !password) return;
-    this.props.login(email, password);
-  }
-
-  validateEmail(email) {
-    return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
-      email
-    );
   }
 
   handleInputChange(event) {
@@ -44,17 +30,30 @@ class Login extends React.Component {
     });
   }
 
+  validateEmail(email) {
+    return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
+      email
+    );
+  }
+
+  register() {
+    const { email, password } = this.state;
+
+    console.log(email, password);
+    this.props.register(email, password);
+  }
+
   render() {
-    const { history, status, error } = this.props;
+    const { status, error } = this.props;
     const { email, password } = this.state;
 
     return (
-      <div className="Login">
+      <div className="Register">
         {status === "success" && <Redirect to="/" />}
-        <div className="Login__container">
-          <div className="Login__title">
-            <div className="Login__title-box" />
-            <div className="Login__title-text">Вход на сайт</div>
+        <div className="Register__container">
+          <div className="Register__title">
+            <div className="Register__title-box" />
+            <div className="Register__title-text">Регистрация</div>
           </div>
           {error !== undefined && <FormStatus mode="error">{error}</FormStatus>}
           <Input
@@ -77,20 +76,13 @@ class Login extends React.Component {
             onChange={this.handleInputChange}
             mode={password && password.length < 8 ? "error" : "default"}
           />
-          <div className="Login__button-container">
+          <div className="Register__button-container">
             <Button
               mode="primary"
-              onClick={this.login}
               disabled={status !== "idle"}
+              onClick={this.register}
             >
-              Войти
-            </Button>
-            <Button
-              mode="secondary"
-              onClick={() => history.push("/register")}
-              disabled={status !== "idle"}
-            >
-              Регистрация
+              Создать аккаунт
             </Button>
           </div>
         </div>
@@ -99,11 +91,10 @@ class Login extends React.Component {
   }
 }
 
-Login.propTypes = {
-  history: PropTypes.any,
+Register.propTypes = {
   status: PropTypes.string,
   error: PropTypes.string,
-  login: PropTypes.func,
+  register: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -112,12 +103,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  login: (email, password) => {
-    dispatch(login({ email, password }));
+  register: (email, password) => {
+    dispatch(register({ email, password }));
   },
 });
 
-export default compose(
-  withRouter,
-  connect(mapStateToProps, mapDispatchToProps)
-)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
