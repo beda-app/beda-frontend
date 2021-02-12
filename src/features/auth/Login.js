@@ -50,7 +50,7 @@ class Login extends React.Component {
 
     return (
       <div className="Login">
-        {status === "success" && <Redirect to="/" />}
+        {status === "success" && <Redirect to="/dashboard" />}
         <div className="Login__container">
           <div className="Login__title">
             <div className="Login__title-box" />

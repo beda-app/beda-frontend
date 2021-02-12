@@ -49,7 +49,7 @@ class Register extends React.Component {
 
     return (
       <div className="Register">
-        {status === "success" && <Redirect to="/" />}
+        {status === "success" && <Redirect to="/dashboard" />}
         <div className="Register__container">
           <div className="Register__title">
             <div className="Register__title-box" />
