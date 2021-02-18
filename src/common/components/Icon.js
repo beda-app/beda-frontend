@@ -9,13 +9,9 @@ const Icon = (props) => {
     <img
       className={["Icon", className].join(" ")}
       src={src}
-      style={{
-        maxHeight: height,
-        minHeight: height,
-        maxWidth: width,
-        minWidth: width,
-        ...style,
-      }}
+      height={height}
+      width={width}
+      style={style}
       alt=""
       {...restProps}
     />
