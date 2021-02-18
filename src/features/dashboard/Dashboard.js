@@ -139,9 +139,6 @@ class Dashboard extends React.Component {
       const greenGradient = ctx.createLinearGradient(0, 0, 0, 290);
       greenGradient.addColorStop(0, "rgba(61, 213, 152, 1)");
       greenGradient.addColorStop(1, "rgba(61, 213, 152, .1)");
-      const blueGradient = ctx.createLinearGradient(0, 0, 0, 290);
-      blueGradient.addColorStop(0, "rgba(26, 115, 232, 1)");
-      blueGradient.addColorStop(1, "rgba(26, 115, 232, .1)");
 
       return {
         labels: labels,
