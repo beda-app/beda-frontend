@@ -2,8 +2,134 @@
   margin: 0 auto;
   width: 100%;
   min-height: 100vh;
+  overflow-y: scroll;
   display: flex;
-  align-items: center;
-  justify-content: center;
   background-color: #1f2e35;
+
+  &__container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__left {
+    background: #30444e;
+    flex-direction: column;
+    display: flex;
+    flex-grow: 2;
+  }
+
+  &__right {
+    background: linear-gradient(to bottom, #26373e, #1f2e35);
+    display: flex;
+    width: 25%;
+    height: 100%;
+    flex-direction: column;
+  }
+
+  &__chart-control {
+    width: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__title {
+    font-family: Ubuntu, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    color: #fff;
+    margin-left: 25px;
+    margin-top: 25px;
+    padding-bottom: 25px;
+  }
+
+  &__chart {
+    width: auto;
+    margin-top: 25px;
+    margin-right: 25px;
+    justify-self: flex-end;
+  }
+
+  &__date-selection {
+    margin-left: auto;
+    margin-right: 25px;
+    margin-top: 25px;
+  }
+
+  &__add-weight-input {
+    margin: 0 25px 25px 25px;
+  }
+
+  &__add-weight-input > .Input {
+    font-size: 32px;
+  }
+
+  &__add-weight-input > .Button {
+    margin-top: 25px;
+  }
+
+  &__history-element {
+    margin-top: 12px;
+    background: #30444e;
+    width: auto;
+    height: 48px;
+    margin-left: 25px;
+    margin-right: 25px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__history-element-title {
+    margin-left: 14px;
+    font-family: Ubuntu, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__history-element-date {
+    margin-left: 8px;
+    margin-top: 3px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.45);
+  }
+
+  &__history-element-diff {
+    margin-right: 14px;
+    font-family: Ubuntu, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+  }
+
+  &__history-element-positive {
+    color: #3dd598;
+  }
+
+  &__history-element-negative {
+    color: #ff575f;
+  }
+
+  @media screen and (max-width: 700px) {
+    &__container {
+      flex-direction: column;
+    }
+
+    &__left {
+      width: 100%;
+    }
+
+    &__right {
+      width: 100%;
+      padding-bottom: 32px;
+      margin-left: 0;
+    }
+  }
 }
