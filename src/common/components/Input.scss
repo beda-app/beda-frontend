@@ -1,7 +1,6 @@
 .Input {
   display: flex;
   flex-direction: row;
-  $color: #3ed598;
 
   &__el {
     min-height: 36px;
@@ -14,6 +13,17 @@
     width: 100%;
     background-color: transparent;
     margin-top: 4px;
+  }
+
+  &__hidden-label {
+    position: absolute;
+    top: -1000;
+    left: -1000;
+    height: 1px;
+    width: 1px;
+    clip: rect(1px, 1px, 1px, 1px);
+    border: 0;
+    overflow: hidden;
   }
 
   &__container {
@@ -40,7 +50,7 @@
   }
 
   &__show-password {
-    margin-top: 5px;
+    margin-top: 8px;
   }
 }
 

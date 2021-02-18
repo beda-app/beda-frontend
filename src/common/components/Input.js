@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "./Input.scss";
 import Checkbox from "./Checkbox";
+import uniqid from "uniqid";
 
 const Input = (props) => {
-  const { type, left, className, mode, ...restProps } = props;
+  const { type, left, className, mode, id, label, ...restProps } = props;
   const [hidden, setHidden] = useState(true);
+  const myId = id || uniqid("input-");
   const classNames = [
     "Input__el",
     `Input__mode-${mode || "default"}`,
@@ -19,7 +21,11 @@ const Input = (props) => {
         className="Input__container"
         style={{ marginLeft: left !== undefined ? 16 : 0 }}
       >
+        <label htmlFor={myId} className="Input__hidden-label">
+          {label || restProps.placeholder}
+        </label>
         <input
+          id={myId}
           className={classNames.join(" ")}
           type={type === "password" && !hidden ? "text" : type}
           {...restProps}
@@ -41,6 +47,8 @@ Input.propTypes = {
   left: PropTypes.element,
   className: PropTypes.string,
   mode: PropTypes.oneOf(["default", "error"]),
+  id: PropTypes.string,
+  label: PropTypes.string,
 };
 
 export default Input;
