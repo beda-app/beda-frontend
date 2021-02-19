@@ -39,7 +39,6 @@ class Register extends React.Component {
   register() {
     const { email, password } = this.state;
 
-    console.log(email, password);
     this.props.register(email, password);
   }
 
