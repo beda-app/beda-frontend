@@ -9,8 +9,11 @@ import { fetchWeights, addWeight } from "./dashboardSlice";
 import { connect } from "react-redux";
 import isBetween from "dayjs/plugin/isBetween";
 import isoWeek from "dayjs/plugin/isoWeek";
+import customParseFormat from "dayjs/plugin/customParseFormat";
 import "dayjs/locale/ru";
+import Popup from "reactjs-popup";
 
+dayjs.extend(customParseFormat);
 dayjs.extend(isBetween);
 dayjs.extend(isoWeek);
 
@@ -67,13 +70,26 @@ class Dashboard extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.addWeight = this.addWeight.bind(this);
     this.getData = this.getData.bind(this);
+    this.openPopup = this.openPopup.bind(this);
+    this.closePopup = this.closePopup.bind(this);
 
     this.state = {
       fromTime: null,
       toTime: null,
 
       weight: "",
+      fromTimeInput: "",
+      toTimeInput: "",
+      showPopup: false,
     };
+
+    this.timeDeltaPresets = [
+      { name: "Неделя", delta: [6, "days"] },
+      { name: "Две недели", delta: [13, "days"] },
+      { name: "Месяц", delta: [1, "month"] },
+      { name: "Пол года", delta: [6, "month"] },
+      { name: "Год", delta: [1, "year"] },
+    ];
   }
 
   handleInputChange(event) {
@@ -113,7 +129,7 @@ class Dashboard extends React.Component {
     const data = [];
     for (
       let curr = fromTime.startOf("days");
-      curr.isBefore(toTime);
+      curr.isBefore(toTime.endOf("days"));
       curr = curr.add(mode.step[0], mode.step[1])
     ) {
       const s = statistics
@@ -166,17 +182,88 @@ class Dashboard extends React.Component {
     this.props.fetchLastWeights(200);
   }
 
+  closePopup() {
+    this.setState({ showPopup: false });
+  }
+
+  openPopup() {
+    this.setState({ showPopup: true });
+  }
+
+  selectTimeDelta(fromTime, toTime) {
+    if (fromTime.isBefore(toTime)) {
+      this.setState({ fromTime, toTime });
+      this.props.fetchWeights(fromTime.unix(), toTime.unix());
+    } else {
+      this.setState({ toTime: fromTime, fromTime: toTime });
+      this.props.fetchWeights(toTime.unix(), fromTime.unix());
+    }
+  }
+
   render() {
     const { statistics } = this.props;
-    const { weight } = this.state;
+    const { weight, showPopup, fromTimeInput, toTimeInput } = this.state;
 
     return (
       <div className="Dashboard">
+        <Popup open={showPopup} onClose={this.closePopup}>
+          <div className="Dashboard__modal">
+            <div className="Dashboard__modal-title">Выбор периода</div>
+            <div className="Dashboard__modal-preset">
+              {this.timeDeltaPresets.map((e, i) => (
+                <Button
+                  key={i}
+                  mode="tertiary"
+                  onClick={() => {
+                    this.selectTimeDelta(
+                      dayjs().subtract(e.delta[0], e.delta[1]),
+                      dayjs()
+                    );
+                    this.closePopup();
+                  }}
+                >
+                  {e.name}
+                </Button>
+              ))}
+            </div>
+            <div className="Dashboard__modal-custom-delta">Другой</div>
+            <Input
+              placeholder="Начало"
+              type="date"
+              name="fromTimeInput"
+              onChange={this.handleInputChange}
+            />
+            <Input
+              placeholder="Конец"
+              type="date"
+              name="toTimeInput"
+              onChange={this.handleInputChange}
+            />
+            <Button
+              mode="primary"
+              style={{ marginTop: 25 }}
+              disabled={fromTimeInput === "" || toTimeInput === ""}
+              onClick={() => {
+                this.selectTimeDelta(
+                  dayjs(fromTimeInput, "YYYY-MM-DD"),
+                  dayjs(toTimeInput, "YYYY-MM-DD")
+                );
+                this.closePopup();
+              }}
+            >
+              Применить
+            </Button>
+          </div>
+        </Popup>
         <div className="Dashboard__container">
           <div className="Dashboard__left">
             <div className="Dashboard__chart-control">
               <div className="Dashboard__title">Статистика</div>
-              <div className="Dashboard__date-selection" />
+              <div className="Dashboard__date-selection">
+                <Button mode="tertiary" onClick={this.openPopup}>
+                  Настройки
+                </Button>
+              </div>
             </div>
             <div className="Dashboard__chart">
               <Line data={this.getData()} options={options} />
@@ -264,7 +351,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchWeights({ count }));
   },
   fetchWeights: (fromTime, toTime, count = 200) => {
-    dispatch(fetchWeights({ from_time: fromTime, to_time: toTime }));
+    dispatch(fetchWeights({ from_time: fromTime, to_time: toTime, count }));
   },
   addWeight: (weight) => {
     dispatch(addWeight(weight));

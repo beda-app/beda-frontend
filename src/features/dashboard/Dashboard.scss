@@ -17,6 +17,7 @@
     flex-direction: column;
     display: flex;
     flex-grow: 2;
+    height: 100%;
   }
 
   &__right {
@@ -41,8 +42,8 @@
     font-size: 36px;
     color: #fff;
     margin-left: 25px;
-    margin-top: 25px;
     padding-bottom: 25px;
+    margin-top: 25px;
   }
 
   &__chart {
@@ -55,7 +56,7 @@
   &__date-selection {
     margin-left: auto;
     margin-right: 25px;
-    margin-top: 25px;
+    margin-top: 32px;
   }
 
   &__add-weight-input {
@@ -115,6 +116,38 @@
 
   &__history-element-negative {
     color: #ff575f;
+  }
+
+  &__modal {
+    background-color: #1f2e35;
+    padding: 25px;
+  }
+
+  &__modal-title {
+    font-family: Ubuntu, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    color: white;
+    font-size: 24px;
+  }
+
+  &__modal-preset {
+    display: flex;
+    flex-direction: row;
+    margin-top: 16px;
+  }
+
+  &__modal-preset > *:not(:first-child) {
+    margin-left: 8px;
+  }
+
+  &__modal-custom-delta {
+    font-family: Ubuntu, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    color: white;
+    font-size: 24px;
+    margin-top: 16px;
   }
 
   @media screen and (max-width: 700px) {
