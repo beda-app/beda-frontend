@@ -52,6 +52,11 @@
   &__show-password {
     margin-top: 8px;
   }
+
+  ::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    opacity: 0.5;
+  }
 }
 
 .Input:not(:first-of-type) {
