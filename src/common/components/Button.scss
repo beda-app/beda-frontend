@@ -19,6 +19,15 @@
     background: #286053;
     color: #44eeaa;
   }
+
+  &__tertiary {
+    padding: 4px;
+    background: rgba(0, 0, 0, 0.3);
+    color: rgba(255, 255, 255, 0.5);
+    border-radius: 0;
+    width: unset;
+    height: unset;
+  }
 }
 
 .Button:active {
