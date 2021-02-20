@@ -5,6 +5,7 @@ import store from "./store";
 import PrivateRoute from "../common/components/PrivateRoute";
 import Loading from "../common/components/Loading";
 import NotFound from "../common/components/NotFound";
+import Home from "../features/home/Home";
 
 const Login = lazy(() => import("../features/auth/Login"));
 const Register = lazy(() => import("../features/auth/Register"));
@@ -17,6 +18,7 @@ class App extends React.Component {
         <Router>
           <Suspense fallback={<Loading />}>
             <Switch>
+              <Route path="/" component={Home} />
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
               <PrivateRoute path="/dashboard">
