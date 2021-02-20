@@ -1,7 +1,7 @@
 .Loading {
   height: 100vh;
   width: 100%;
-  background-color: #1f2e35;
+  background-color: rgb(var(--color-background));
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,7 +21,7 @@
     position: absolute;
     width: 32px;
     height: 32px;
-    background: #3dd598;
+    background: rgb(var(--color-primary));
     animation: lds-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
   }
 
@@ -32,7 +32,7 @@
     display: block;
     width: 32px;
     height: 32px;
-    background: #3dd598;
+    background: rgb(var(--color-primary));
   }
 
   &__spinner > div:before {

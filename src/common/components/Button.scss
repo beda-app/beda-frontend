@@ -9,15 +9,15 @@
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  background: linear-gradient(180deg, #40df9f 0%, #3ed598 100%);
+  background: rgb(var(--color-primary));
   font-size: 18px;
   width: 100%;
   border-radius: 12px;
   height: 48px;
 
   &__secondary {
-    background: #286053;
-    color: #44eeaa;
+    background: rgba(var(--color-primary), 0.3);
+    color: rgb(var(--color-primary));
   }
 
   &__tertiary {

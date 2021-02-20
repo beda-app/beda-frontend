@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #1f2e35;
+  background-color: rgb(var(--color-background));
 
   &__container {
     display: flex;
@@ -30,8 +30,8 @@
     justify-content: center;
 
     border-radius: 12px;
-    background: linear-gradient(180deg, #40df9f 0%, #3ed598 100%);
-    box-shadow: 0 2px 4px rgba(15, 218, 137, 0.3);
+    background: rgb(var(--color-primary));
+    box-shadow: 0 2px 4px rgba(var(--color-primary), 0.3);
   }
 
   &__title-text {
@@ -40,7 +40,7 @@
     font-weight: normal;
     font-size: 42px;
     line-height: 48px;
-    color: #fff;
+    color: rgb(var(--color-foreground));
     margin-left: 16px;
   }
 

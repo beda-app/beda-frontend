@@ -4,7 +4,7 @@
   min-height: 100vh;
   overflow-y: scroll;
   display: flex;
-  background-color: #1f2e35;
+  background-color: rgb(var(--color-background));
 
   &__container {
     flex-grow: 1;
@@ -13,7 +13,7 @@
   }
 
   &__left {
-    background: #30444e;
+    background: rgb(var(--color-background-primary));
     flex-direction: column;
     display: flex;
     flex-grow: 2;
@@ -21,7 +21,11 @@
   }
 
   &__right {
-    background: linear-gradient(to bottom, #26373e, #1f2e35);
+    background: linear-gradient(
+      to bottom,
+      rgb(var(--color-background-secondary)),
+      rgb(var(--color-background))
+    );
     display: flex;
     width: 25%;
     height: 100%;
@@ -40,7 +44,7 @@
     font-style: normal;
     font-weight: normal;
     font-size: 36px;
-    color: #fff;
+    color: rgb(var(--color-foreground));
     margin-left: 25px;
     padding-bottom: 25px;
     margin-top: 25px;
@@ -73,7 +77,7 @@
 
   &__history-element {
     margin-top: 12px;
-    background: #30444e;
+    background: rgba(var(--color-background-primary));
     width: auto;
     height: 48px;
     margin-left: 25px;
@@ -90,7 +94,7 @@
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
-    color: #fff;
+    color: var(--color-foreground);
     display: flex;
     flex-direction: row;
   }
@@ -99,7 +103,7 @@
     margin-left: 8px;
     margin-top: 3px;
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.45);
+    color: rgba(var(--color-foreground), 0.45);
   }
 
   &__history-element-diff {
@@ -111,15 +115,15 @@
   }
 
   &__history-element-positive {
-    color: #3dd598;
+    color: rgb(var(--color-primary));
   }
 
   &__history-element-negative {
-    color: #ff575f;
+    color: rgb(var(--color-error));
   }
 
   &__modal {
-    background-color: #1f2e35;
+    background-color: rgb(var(--color-background));
     padding: 25px;
   }
 
@@ -127,7 +131,7 @@
     font-family: Ubuntu, sans-serif;
     font-style: normal;
     font-weight: normal;
-    color: white;
+    color: rgb(var(--color-foreground));
     font-size: 24px;
   }
 
@@ -145,7 +149,7 @@
     font-family: Ubuntu, sans-serif;
     font-style: normal;
     font-weight: normal;
-    color: white;
+    color: rgb(var(--color-foreground));
     font-size: 24px;
     margin-top: 16px;
   }

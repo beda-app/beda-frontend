@@ -2,11 +2,11 @@
   font-family: Ubuntu, sans-serif;
   padding: 16px;
   border-radius: 12px;
-  background-color: #286053;
-  color: #3dd598;
+  background-color: rgba(var(--color-primary), 0.3);
+  color: rgb(var(--color-primary));
 
   &__error {
-    background-color: #623a42;
-    color: #ff575f;
+    background-color: rgba(var(--color-error), 0.3);
+    color: rgb(var(--color-error));
   }
 }
