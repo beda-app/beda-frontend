@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import PrivateRoute from "../common/components/PrivateRoute";
 import Loading from "../common/components/Loading";
+import NotFound from "../common/components/NotFound";
 
 const Login = lazy(() => import("../features/auth/Login"));
 const Register = lazy(() => import("../features/auth/Register"));
@@ -21,6 +22,7 @@ class App extends React.Component {
               <PrivateRoute path="/dashboard">
                 <Dashboard />
               </PrivateRoute>
+              <Route component={NotFound} />
             </Switch>
           </Suspense>
         </Router>
