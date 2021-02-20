@@ -290,7 +290,7 @@ class Dashboard extends React.Component {
             <div className="Dashboard__history">
               <div className="Dashboard__title">История</div>
               {statistics
-                .sort((a, b) => b - a)
+                .sort((a, b) => b.time - a.time)
                 .slice(0, 6)
                 .map((v, i, a) => {
                   if (i === a.length - 1) return null;
