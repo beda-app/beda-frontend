@@ -77,7 +77,7 @@
 
   &__history-element {
     margin-top: 12px;
-    background: rgba(var(--color-background-primary));
+    background: rgb(var(--color-background-primary));
     width: auto;
     height: 48px;
     margin-left: 25px;
@@ -94,7 +94,7 @@
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
-    color: var(--color-foreground);
+    color: rgb(var(--color-foreground));
     display: flex;
     flex-direction: row;
   }
